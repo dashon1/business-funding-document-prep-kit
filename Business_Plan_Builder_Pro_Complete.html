@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Plan Builder Pro | Professional Edition</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10px; line-height: 1.6; color: #1e293b; background: #ffffff; }
+        :root { --navy: #1e3a5f; --navy-dark: #0f2744; --blue: #3b82f6; --blue-light: #dbeafe; --sky: #0ea5e9; --mint: #10b981; --mint-light: #d1fae5; --orange: #f97316; --orange-light: #ffedd5; --purple: #8b5cf6; --purple-light: #ede9fe; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-300: #cbd5e1; --gray-600: #475569; --gray-800: #1e293b; }
+        .page { width: 210mm; padding: 15mm 14mm; margin: 0 auto; background: #ffffff; position: relative; }
+        .cover { height: 277mm; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%); color: white; padding: 40px; margin: -15mm -14mm; position: relative; overflow: hidden; }
+        .cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .cover-content { position: relative; z-index: 1; }
+        .cover-icon { width: 80px; height: 80px; background: var(--blue); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; }
+        .cover-icon svg { width: 48px; height: 48px; fill: white; }
+        .cover h1 { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+        .cover-subtitle { font-size: 18px; opacity: 0.9; margin-bottom: 40px; }
+        .cover-features { display: flex; gap: 30px; margin-top: 50px; }
+        .cover-feature { text-align: center; }
+        .cover-feature-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+        .cover-feature-icon svg { width: 24px; height: 24px; fill: white; }
+        .cover-edition { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); background: var(--blue); padding: 8px 24px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .section { margin-bottom: 20px; break-inside: avoid; }
+        .section-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); color: white; padding: 16px 20px; border-radius: 12px; margin-bottom: 14px; position: relative; }
+        .section-header::after { content: ''; position: absolute; top: 0; right: 0; width: 120px; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1)); }
+        .section-number { font-size: 36px; font-weight: 800; opacity: 0.2; position: absolute; top: 5px; right: 14px; }
+        .section-header h2 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+        .section-header p { font-size: 10px; opacity: 0.8; }
+        .card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+        .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid var(--gray-200); }
+        .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .card-icon.blue { background: var(--blue-light); } .card-icon.mint { background: var(--mint-light); } .card-icon.orange { background: var(--orange-light); } .card-icon.purple { background: var(--purple-light); }
+        .card-icon svg { width: 18px; height: 18px; }
+        .card-icon.blue svg { fill: var(--blue); } .card-icon.mint svg { fill: var(--mint); } .card-icon.orange svg { fill: var(--orange); } .card-icon.purple svg { fill: var(--purple); }
+        .card-title { font-size: 13px; font-weight: 700; color: var(--navy); }
+        .card-subtitle { font-size: 9px; color: var(--gray-600); }
+        .table-container { overflow-x: auto; margin: 10px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 9px; }
+        th { background: var(--navy); color: white; padding: 8px 10px; text-align: left; font-weight: 600; font-size: 8px; text-transform: uppercase; }
+        th:first-child { border-radius: 8px 0 0 0; } th:last-child { border-radius: 0 8px 0 0; }
+        td { padding: 8px 10px; border-bottom: 1px solid var(--gray-200); background: white; }
+        tr:nth-child(even) td { background: var(--gray-50); }
+        .callout { background: linear-gradient(135deg, var(--blue-light) 0%, #bfdbfe 100%); border-left: 4px solid var(--blue); border-radius: 0 12px 12px 0; padding: 12px 16px; margin: 10px 0; }
+        .callout-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .callout-icon { width: 20px; height: 20px; background: var(--blue); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+        .callout-icon svg { width: 12px; height: 12px; fill: white; }
+        .callout-title { font-size: 11px; font-weight: 700; color: var(--navy); }
+        .callout-content { font-size: 9px; color: var(--gray-800); }
+        .info-box { background: white; border: 1px solid var(--gray-300); border-radius: 12px; padding: 12px; margin: 10px 0; }
+        .info-box.mint { border-color: var(--mint); background: #ecfdf5; }
+        .info-box.blue { border-color: var(--blue); background: #eff6ff; }
+        .stat-card { background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 12px; text-align: center; }
+        .stat-card.blue { border-top: 3px solid var(--blue); } .stat-card.mint { border-top: 3px solid var(--mint); } .stat-card.orange { border-top: 3px solid var(--orange); } .stat-card.purple { border-top: 3px solid var(--purple); }
+        .stat-value { font-size: 20px; font-weight: 800; color: var(--navy); }
+        .stat-label { font-size: 8px; color: var(--gray-600); text-transform: uppercase; }
+        .badge { display: inline-flex; padding: 3px 8px; border-radius: 12px; font-size: 8px; font-weight: 600; }
+        .badge.blue { background: var(--blue-light); color: var(--navy); } .badge.mint { background: var(--mint-light); color: #065f46; } .badge.orange { background: var(--orange-light); color: #9a3412; } .badge.purple { background: var(--purple-light); color: #5b21b6; }
+        .progress-container { margin: 10px 0; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+        .progress-label { font-size: 9px; font-weight: 600; color: var(--gray-600); }
+        .progress-value { font-size: 9px; font-weight: 700; color: var(--blue); }
+        .progress-bar { height: 8px; background: var(--gray-200); border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 4px; }
+        .grid { display: grid; gap: 12px; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .metric-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--gray-200); }
+        .metric-name { font-size: 9px; color: var(--gray-600); }
+        .metric-value { font-size: 11px; font-weight: 700; color: var(--navy); }
+        .checklist { list-style: none; }
+        .checklist li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--gray-200); }
+        .checkbox { width: 16px; height: 16px; border: 2px solid var(--gray-300); border-radius: 4px; flex-shrink: 0; }
+        .compact-list { list-style: none; }
+        .compact-list li { padding: 5px 0; font-size: 9px; border-bottom: 1px dashed var(--gray-200); display: flex; align-items: center; gap: 6px; }
+        .compact-list li::before { content: ''; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; }
+        .page-footer { margin-top: 30px; padding-top: 14px; border-top: 2px solid var(--gray-200); text-align: center; }
+        .footer-text { font-size: 8px; color: var(--gray-600); }
+        .highlight-table th { background: var(--blue); }
+        .page-break { page-break-after: always; }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="cover">
+            <div class="cover-content">
+                <div class="cover-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+                <h1>BUSINESS PLAN BUILDER PRO</h1>
+                <p class="cover-subtitle">Your Complete Roadmap to Business Success</p>
+                <div class="cover-features">
+                    <div class="cover-feature"><div class="cover-feature-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span>10 Core Sections</span></div>
+                    <div class="cover-feature"><div class="cover-feature-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span>Expert Templates</span></div>
+                    <div class="cover-feature"><div class="cover-feature-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span>Financial Tools</span></div>
+                    <div class="cover-feature"><div class="cover-feature-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span>Strategy Frameworks</span></div>
+                </div>
+                <div class="cover-edition">PROFESSIONAL EDITION</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">01</span><h2>EXECUTIVE SUMMARY BUILDER</h2><p>Your Business Story in One Page</p></div>
+            <div class="callout">
+                <div class="callout-header"><div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span class="callout-title">Pro Tip</span></div>
+                <p class="callout-content">The executive summary is your first impression—make it count. This section provides the framework to craft a compelling overview that captures attention and drives readers to learn more.</p>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Executive Summary Components</div><div class="card-subtitle">Structure your business overview effectively</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Component</th><th>Purpose</th><th>Word Count</th><th>Priority</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Business Concept</strong></td><td>What you do and how you solve problems</td><td>50-75 words</td><td><span class="badge blue">High</span></td></tr>
+                            <tr><td><strong>Mission Statement</strong></td><td>Your purpose and values</td><td>20-30 words</td><td><span class="badge blue">High</span></td></tr>
+                            <tr><td><strong>Target Market</strong></td><td>Who you serve</td><td>30-50 words</td><td><span class="badge blue">High</span></td></tr>
+                            <tr><td><strong>Competitive Advantage</strong></td><td>What makes you unique</td><td>40-60 words</td><td><span class="badge mint">Critical</span></td></tr>
+                            <tr><td><strong>Financial Highlights</strong></td><td>Key numbers and projections</td><td>30-40 words</td><td><span class="badge orange">Medium</span></td></tr>
+                            <tr><td><strong>Funding Ask</strong></td><td>What you need and why</td><td>25-35 words</td><td><span class="badge mint">Critical</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div><div><div class="card-title">Market Opportunity</div><div class="card-subtitle">TAM-SAM-SOM Analysis</div></div></div>
+                    <div class="stat-card blue" style="margin-bottom: 10px;"><div class="stat-value">$2.5M</div><div class="stat-label">Total Addressable Market</div></div>
+                    <div class="stat-card mint" style="margin-bottom: 10px;"><div class="stat-value">$850K</div><div class="stat-label">Serviceable Market</div></div>
+                    <div class="stat-card orange"><div class="stat-value">$170K</div><div class="stat-label">Obtainable Market</div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">Financial Summary</div><div class="card-subtitle">3-Year Projection</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Year 1 Revenue</span><span class="metric-value">$250,000</span></div>
+                    <div class="metric-row"><span class="metric-name">Year 2 Revenue</span><span class="metric-value">$500,000</span></div>
+                    <div class="metric-row"><span class="metric-name">Year 3 Revenue</span><span class="metric-value">$1,200,000</span></div>
+                    <div class="metric-row"><span class="metric-name">3-Year CAGR</span><span class="metric-value">118%</span></div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon sky"><svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-2H3v2z"/></svg></div><div><div class="card-title">Funding Request</div><div class="card-subtitle">Investment requirements</div></div></div>
+                <div class="grid grid-4">
+                    <div class="stat-card blue"><div class="stat-value">$500K</div><div class="stat-label">Amount Requested</div></div>
+                    <div class="stat-card mint"><div class="stat-value">5 Years</div><div class="stat-label">Term</div></div>
+                    <div class="stat-card orange"><div class="stat-value">8%</div><div class="stat-label">Interest Rate</div></div>
+                    <div class="stat-card purple"><div class="stat-value">3.5x</div><div class="stat-label">Expected ROI</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 1: Executive Summary</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">02</span><h2>COMPANY DESCRIPTION FRAMEWORK</h2><p>Building Your Business Identity</p></div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Company Overview</div><div class="card-subtitle">Basic business information</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Legal Business Name</span><span class="metric-value">________________</span></div>
+                    <div class="metric-row"><span class="metric-name">DBA (If applicable)</span><span class="metric-value">________________</span></div>
+                    <div class="metric-row"><span class="metric-name">Business Structure</span><span class="metric-value">LLC / Corporation</span></div>
+                    <div class="metric-row"><span class="metric-name">Industry</span><span class="metric-value">________________</span></div>
+                    <div class="metric-row"><span class="metric-name">Year Founded</span><span class="metric-value">____</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="card-title">Mission Statement</div><div class="card-subtitle">Your purpose and values</div></div></div>
+                    <ul class="compact-list">
+                        <li>We exist to: ________________________________</li>
+                        <li>Our customers trust us to: ____________________</li>
+                        <li>We measure success by: ______________________</li>
+                        <li>Our core values are: _________________________</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">Business Model Canvas</div><div class="card-subtitle">Nine building blocks</div></div></div>
+                <div class="grid grid-3">
+                    <div class="stat-card blue"><div class="stat-label">Value Propositions</div><div style="font-size: 9px; margin-top: 6px;">What value we deliver to customers</div></div>
+                    <div class="stat-card mint"><div class="stat-label">Customer Segments</div><div style="font-size: 9px; margin-top: 6px;">Who we create value for</div></div>
+                    <div class="stat-card orange"><div class="stat-label">Channels</div><div style="font-size: 9px; margin-top: 6px;">How we reach customers</div></div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div><div><div class="card-title">SWOT Analysis</div><div class="card-subtitle">Strategic planning tool</div></div></div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Strengths</th><th>Weaknesses</th><th>Opportunities</th><th>Threats</th></tr></thead>
+                        <tbody>
+                            <tr><td>Internal capabilities</td><td>Internal limitations</td><td>External possibilities</td><td>External challenges</td></tr>
+                            <tr><td>Resources, skills</td><td>Gaps, deficiencies</td><td>Market trends</td><td>Competition, regulations</td></tr>
+                            <tr><td>Unique advantages</td><td>Areas for improvement</td><td>Industry shifts</td><td>Economic factors</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 2: Company Description</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">03</span><h2>MARKET ANALYSIS TOOLKIT</h2><p>Understanding Your Market Landscape</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">Industry Overview</div><div class="card-subtitle">Market size and growth analysis</div></div></div>
+                <div class="grid grid-4" style="margin-bottom: 12px;">
+                    <div class="stat-card blue"><div class="stat-value">$47B</div><div class="stat-label">Industry Size</div></div>
+                    <div class="stat-card mint"><div class="stat-value">12.4%</div><div class="stat-label">Growth Rate</div></div>
+                    <div class="stat-card orange"><div class="stat-value">2028</div><div class="stat-label">Forecast Year</div></div>
+                    <div class="stat-card purple"><div class="stat-value">Growth</div><div class="stat-label">Lifecycle Stage</div></div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-header"><span class="progress-label">Market Penetration Target</span><span class="progress-value">15% by Year 3</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 15%; background: linear-gradient(90deg, var(--blue), var(--sky));"></div></div>
+                </div>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div><div><div class="card-title">Target Customer Profile</div><div class="card-subtitle">Ideal customer demographics</div></div></div>
+                    <ul class="compact-list">
+                        <li>Age: 35-55 years old</li>
+                        <li>Income: $75,000-$150,000 annually</li>
+                        <li>Education: Bachelor's degree or higher</li>
+                        <li>Location: Urban and suburban areas</li>
+                        <li>Professional: Business owners, executives</li>
+                        <li>Technology: Early adopters</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="card-title">Key Market Trends</div><div class="card-subtitle">Industry drivers</div></div></div>
+                    <ul class="compact-list">
+                        <li>Digital transformation acceleration</li>
+                        <li>Remote work adoption increasing</li>
+                        <li>Sustainability focus growing</li>
+                        <li>AI/ML integration demand</li>
+                        <li>Subscription-based models</li>
+                        <li>Eco-conscious consumer behavior</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div><div><div class="card-title">Customer Needs Assessment</div><div class="card-subtitle">Priority opportunities</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Need</th><th>Importance</th><th>Current Satisfaction</th><th>Opportunity</th></tr></thead>
+                        <tbody>
+                            <tr><td>Time Savings</td><td><span class="badge orange">High</span></td><td>45%</td><td><span class="badge mint">High</span></td></tr>
+                            <tr><td>Cost Reduction</td><td><span class="badge orange">High</span></td><td>60%</td><td><span class="badge blue">Medium</span></td></tr>
+                            <tr><td>Quality Assurance</td><td><span class="badge mint">Critical</span></td><td>35%</td><td><span class="badge mint">High</span></td></tr>
+                            <tr><td>Ease of Use</td><td><span class="badge orange">High</span></td><td>55%</td><td><span class="badge orange">Medium</span></td></tr>
+                            <tr><td>24/7 Support</td><td><span class="badge blue">Medium</span></td><td>25%</td><td><span class="badge mint">High</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 3: Market Analysis</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">04</span><h2>COMPETITIVE LANDSCAPE MATRIX</h2><p>Know Your Competition, Know Yourself</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="card-title">Direct Competitor Analysis</div><div class="card-subtitle">Strengths and weaknesses</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Competitor</th><th>Market Share</th><th>Strengths</th><th>Weaknesses</th><th>Pricing</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Competitor A</strong></td><td>28%</td><td>Brand recognition, global presence</td><td>High prices, slow innovation</td><td>Premium</td></tr>
+                            <tr><td><strong>Competitor B</strong></td><td>22%</td><td>Strong tech, good UX</td><td>Limited features, poor support</td><td>Mid-range</td></tr>
+                            <tr><td><strong>Competitor C</strong></td><td>15%</td><td>Low cost, simple solutions</td><td>Quality issues, limited scope</td><td>Budget</td></tr>
+                            <tr><td><strong>Your Position</strong></td><td>—</td><td>Best value, superior support</td><td>New market entry</td><td>Competitive</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">Competitive Advantages</div><div class="card-subtitle">Your key differentiators</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Product Quality</span><span class="badge mint">9/10</span></div>
+                    <div class="metric-row"><span class="metric-name">Customer Service</span><span class="badge mint">9.5/10</span></div>
+                    <div class="metric-row"><span class="metric-name">Price Competitiveness</span><span class="badge blue">8.5/10</span></div>
+                    <div class="metric-row"><span class="metric-name">Technology/Innovation</span><span class="badge blue">8.8/10</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-2H3v2z"/></svg></div><div><div class="card-title">Your Unfair Advantage</div><div class="card-subtitle">Difficult to replicate</div></div></div>
+                    <ul class="checklist">
+                        <li><div class="checkbox"></div><div><div class="card-title" style="font-size: 10px;">Proprietary Technology</div><div style="font-size: 8px; color: var(--gray-600);">Patented algorithms with 18-month head start</div></div></li>
+                        <li><div class="checkbox"></div><div><div class="card-title" style="font-size: 10px;">Customer Success Model</div><div style="font-size: 8px; color: var(--gray-600);">Dedicated success managers</div></div></li>
+                        <li><div class="checkbox"></div><div><div class="card-title" style="font-size: 10px;">Strategic Partnerships</div><div style="font-size: 8px; color: var(--gray-600);">Exclusive deals with integrators</div></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 4: Competitive Landscape</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">05</span><h2>ORGANIZATION & MANAGEMENT</h2><p>Building Your Leadership Team</p></div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><div class="card-title">Organizational Structure</div><div class="card-subtitle">Key management positions</div></div></div>
+                    <ul class="checklist">
+                        <li><div class="checkbox"></div><div><div class="card-title" style="font-size: 10px;">Chief Executive Officer</div><div style="font-size: 8px; color: var(--gray-600);">10+ years industry experience</div></div></li>
+                        <li><div class="checkbox"></div><div><div class="card-title" style="font-size: 10px;">Chief Technology Officer</div><div style="font-size: 8px; color: var(--gray-600);">Former tech lead at Fortune 500</div></div></li>
+                        <li><div class="checkbox"></div><div><div class="card-title" style="font-size: 10px;">Chief Financial Officer</div><div style="font-size: 8px; color: var(--gray-600);">CPA, 15 years financial leadership</div></div></li>
+                        <li><div class="checkbox"></div><div><div class="card-title" style="font-size: 10px;">VP of Sales</div><div style="font-size: 8px; color: var(--gray-600);">Built $50M pipeline</div></div></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Team Skills Matrix</div><div class="card-subtitle">Core competencies coverage</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Leadership</span><span class="badge mint">Strong</span></div>
+                    <div class="metric-row"><span class="metric-name">Operations</span><span class="badge mint">Strong</span></div>
+                    <div class="metric-row"><span class="metric-name">Finance</span><span class="badge mint">Strong</span></div>
+                    <div class="metric-row"><span class="metric-name">Marketing</span><span class="badge blue">Developing</span></div>
+                    <div class="metric-row"><span class="metric-name">Technology</span><span class="badge mint">Strong</span></div>
+                    <div class="metric-row"><span class="metric-name">Sales</span><span class="badge mint">Strong</span></div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Hiring Plan</div><div class="card-subtitle">Year 1 team expansion</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Position</th><th>Priority</th><th>Timeline</th><th>Salary Range</th><th>Key Qualifications</th></tr></thead>
+                        <tbody>
+                            <tr><td>Senior Developer</td><td><span class="badge orange">High</span></td><td>Q1</td><td>$120K-$150K</td><td>5+ years, team lead</td></tr>
+                            <tr><td>Marketing Manager</td><td><span class="badge orange">High</span></td><td>Q2</td><td>$80K-$100K</td><td>B2B SaaS background</td></tr>
+                            <tr><td>Customer Success</td><td><span class="badge blue">Medium</span></td><td>Q2</td><td>$60K-$75K</td><td>Technical support</td></tr>
+                            <tr><td>Sales Reps (2)</td><td><span class="badge orange">High</span></td><td>Q3</td><td>$50K+commission</td><td>Enterprise track record</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div><div class="card-title">Compensation Structure</div><div class="card-subtitle">Salary and equity framework</div></div></div>
+                <div class="grid grid-4">
+                    <div class="stat-card blue"><div class="stat-label">Executive</div><div style="font-size: 14px; font-weight: 700; margin-top: 6px;">$150K-$200K</div></div>
+                    <div class="stat-card mint"><div class="stat-label">Management</div><div style="font-size: 14px; font-weight: 700; margin-top: 6px;">$100K-$140K</div></div>
+                    <div class="stat-card orange"><div class="stat-label">Senior</div><div style="font-size: 14px; font-weight: 700; margin-top: 6px;">$80K-$100K</div></div>
+                    <div class="stat-card purple"><div class="stat-label">Junior</div><div style="font-size: 14px; font-weight: 700; margin-top: 6px;">$50K-$75K</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 5: Organization & Management</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">06</span><h2>SERVICE/PRODUCT LINE GUIDE</h2><p>Defining Your Offerings</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Product/Service Portfolio</div><div class="card-subtitle">Complete offerings overview</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Product/Service</th><th>Description</th><th>Target Customer</th><th>Price Point</th><th>Margin %</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Core Product 1</strong></td><td>Primary offering</td><td>Enterprise</td><td>$500-$2,000</td><td><span class="badge mint">65%</span></td></tr>
+                            <tr><td><strong>Core Product 2</strong></td><td>Secondary offering</td><td>SMB</td><td>$200-$500</td><td><span class="badge mint">55%</span></td></tr>
+                            <tr><td><strong>Core Product 3</strong></td><td>Tertiary offering</td><td>Startup</td><td>$50-$200</td><td><span class="badge blue">45%</span></td></tr>
+                            <tr><td><strong>Premium Option</strong></td><td>High-end tier</td><td>Enterprise</td><td>$5,000-$20,000</td><td><span class="badge mint">75%</span></td></tr>
+                            <tr><td><strong>Add-on Service</strong></td><td>Supplementary</td><td>All segments</td><td>$100-$500</td><td><span class="badge blue">50%</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-2H3v2z"/></svg></div><div><div class="card-title">Value Proposition Canvas</div><div class="card-subtitle">Customer alignment</div></div></div>
+                    <ul class="compact-list">
+                        <li>Customer Goals: _______________</li>
+                        <li>Customer Pains: _______________</li>
+                        <li>Customer Gains: _______________</li>
+                        <li>Product Features: _______________</li>
+                        <li>Pain Relievers: _______________</li>
+                        <li>Gain Creators: _______________</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div><div><div class="card-title">Pricing Strategy Matrix</div><div class="card-subtitle">Strategy comparison</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Penetration</span><span class="badge blue">Low initial price</span></div>
+                    <div class="metric-row"><span class="metric-name">Premium</span><span class="badge purple">High perceived value</span></div>
+                    <div class="metric-row"><span class="metric-name">Competitive</span><span class="badge orange">Match competitors</span></div>
+                    <div class="metric-row"><span class="metric-name">Value-Based</span><span class="badge mint">Customer value</span></div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Product Roadmap</div><div class="card-subtitle">Quarterly initiatives</div></div></div>
+                <div class="grid grid-4">
+                    <div class="stat-card blue"><div class="stat-label">Q1</div><div style="font-size: 10px; margin-top: 6px;">Launch Core Product</div></div>
+                    <div class="stat-card mint"><div class="stat-label">Q2</div><div style="font-size: 10px; margin-top: 6px;">Premium Tier Release</div></div>
+                    <div class="stat-card orange"><div class="stat-label">Q3</div><div style="font-size: 10px; margin-top: 6px;">Add-on Services</div></div>
+                    <div class="stat-card purple"><div class="stat-label">Q4</div><div style="font-size: 10px; margin-top: 6px;">Enterprise Suite</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 6: Products/Services</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">07</span><h2>MARKETING & SALES STRATEGY</h2><p>Driving Revenue Growth</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div><div><div class="card-title">Marketing Channel Strategy</div><div class="card-subtitle">Multi-channel approach</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Channel</th><th>Monthly Budget</th><th>Expected ROI</th><th>Conversion Rate</th><th>Priority</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Content Marketing</strong></td><td>$3,000</td><td>350%</td><td>2.5%</td><td><span class="badge mint">Primary</span></td></tr>
+                            <tr><td><strong>Paid Advertising</strong></td><td>$5,000</td><td>280%</td><td>3.8%</td><td><span class="badge mint">Primary</span></td></tr>
+                            <tr><td><strong>Social Media</strong></td><td>$2,000</td><td>200%</td><td>1.8%</td><td><span class="badge blue">Secondary</span></td></tr>
+                            <tr><td><strong>Email Marketing</strong></td><td>$1,000</td><td>420%</td><td>4.5%</td><td><span class="badge mint">Primary</span></td></tr>
+                            <tr><td><strong>Events & Webinars</strong></td><td>$2,500</td><td>300%</td><td>5.2%</td><td><span class="badge blue">Secondary</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/></svg></div><div><div class="card-title">Customer Acquisition Cost</div><div class="card-subtitle">Efficiency metrics</div></div></div>
+                <div class="stat-card blue" style="margin-bottom: 10px;"><div class="stat-value">$285</div><div class="stat-label">CAC (All Channels)</div></div>
+                <div class="stat-card mint" style="margin-bottom: 10px;"><div class="stat-value">$1,425</div><div class="stat-label">Customer LTV</div></div>
+                <div class="stat-card orange"><div class="stat-value">5:1</div><div class="stat-label">LTV:CAC Ratio</div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div><div><div class="card-title">Sales Pipeline</div><div class="card-subtitle">Conversion funnel</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Prospecting</span><span class="metric-value">150 deals</span></div>
+                    <div class="metric-row"><span class="metric-name">Qualification</span><span class="metric-value">75 deals</span></div>
+                    <div class="metric-row"><span class="metric-name">Proposal</span><span class="metric-value">40 deals</span></div>
+                    <div class="metric-row"><span class="metric-name">Negotiation</span><span class="metric-value">20 deals</span></div>
+                    <div class="metric-row"><span class="metric-name">Closed Won</span><span class="metric-value" style="color: var(--mint);">15 deals</span></div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></div><div><div class="card-title">Sales Process Steps</div><div class="card-subtitle">Standard methodology</div></div></div>
+                <div class="grid grid-4">
+                    <div class="stat-card blue"><div style="font-size: 20px; font-weight: 800;">1</div><div class="stat-label">Prospecting</div></div>
+                    <div class="stat-card mint"><div style="font-size: 20px; font-weight: 800;">2</div><div class="stat-label">Discovery</div></div>
+                    <div class="stat-card orange"><div style="font-size: 20px; font-weight: 800;">3</div><div class="stat-label">Proposal</div></div>
+                    <div class="stat-card purple"><div style="font-size: 20px; font-weight: 800;">4</div><div class="stat-label">Close</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 7: Marketing & Sales</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">08</span><h2>FUNDING REQUEST & PROJECTIONS</h2><p>Making Your Financial Case</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div><div class="card-title">5-Year Revenue Projection</div><div class="card-subtitle">Conservative growth scenario</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Year</th><th>Revenue</th><th>Growth %</th><th>Gross Profit</th><th>Op. Expenses</th><th>Net Income</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Year 1</strong></td><td>$250,000</td><td>—</td><td>$187,500</td><td>$156,000</td><td>$31,500</td></tr>
+                            <tr><td><strong>Year 2</strong></td><td>$525,000</td><td>110%</td><td>$393,750</td><td>$245,000</td><td>$148,750</td></tr>
+                            <tr><td><strong>Year 3</strong></td><td>$1,050,000</td><td>100%</td><td>$787,500</td><td>$420,000</td><td>$367,500</td></tr>
+                            <tr><td><strong>Year 4</strong></td><td>$1,680,000</td><td>60%</td><td>$1,260,000</td><td>$588,000</td><td>$672,000</td></tr>
+                            <tr><td><strong>Year 5</strong></td><td>$2,352,000</td><td>40%</td><td>$1,764,000</td><td>$752,640</td><td>$1,011,360</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="grid grid-3" style="margin-top: 12px;">
+                <div class="stat-card blue"><div class="stat-value">$5.8M</div><div class="stat-label">5-Year Revenue</div></div>
+                <div class="stat-card mint"><div class="stat-value">75%</div><div class="stat-label">Avg Growth Rate</div></div>
+                <div class="stat-card orange"><div class="stat-value">48%</div><div class="stat-label">Net Margin Y5</div></div>
+            </div>
+            <div class="two-col" style="margin-top: 12px;">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Break-Even Analysis</div><div class="card-subtitle">Performance thresholds</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Fixed Costs (Monthly)</span><span class="metric-value">$13,000</span></div>
+                    <div class="metric-row"><span class="metric-name">Variable Cost per Unit</span><span class="metric-value">$25</span></div>
+                    <div class="metric-row"><span class="metric-name">Average Price</span><span class="metric-value">$150</span></div>
+                    <div class="metric-row"><span class="metric-name">Break-Even Units</span><span class="metric-value" style="color: var(--mint);">104 units</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">Key Assumptions</div><div class="card-subtitle">Projection basis</div></div></div>
+                    <ul class="compact-list">
+                        <li>Market growth: 12-15% annually</li>
+                        <li>Customer acquisition: 25/month Y1</li>
+                        <li>Pricing: 5% annual increase Y2+</li>
+                        <li>Operating costs: 8% inflation</li>
+                        <li>Competition: Stable share</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 8: Financial Projections</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">09</span><h2>FINANCIAL DOCUMENTS PACKAGE</h2><p>Your Financial Foundation</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Startup Costs Breakdown</div><div class="card-subtitle">Initial investment requirements</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Category</th><th>One-Time Cost</th><th>Monthly Recurring</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Legal & Setup</strong></td><td>$15,000</td><td>—</td></tr>
+                            <tr><td><strong>Equipment</strong></td><td>$25,000</td><td>—</td></tr>
+                            <tr><td><strong>Marketing</strong></td><td>$20,000</td><td>$8,500</td></tr>
+                            <tr><td><strong>Operations</strong></td><td>—</td><td>$12,000</td></tr>
+                            <tr><td><strong>Staffing</strong></td><td>—</td><td>$45,000</td></tr>
+                            <tr><td><strong>TOTAL</strong></td><td style="font-weight: 700;">$60,000</td><td style="font-weight: 700;">$65,500</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Monthly Operating Budget</div><div class="card-subtitle">Revenue and expenses</div></div></div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Category</th><th>Budget</th><th>% of Revenue</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Revenue</strong></td><td>$21,000</td><td>100%</td></tr>
+                            <tr><td>Cost of Goods Sold</td><td>$8,820</td><td>42%</td></tr>
+                            <tr><td><strong>Gross Profit</strong></td><td>$12,180</td><td>58%</td></tr>
+                            <tr><td>Rent</td><td>$3,000</td><td>14%</td></tr>
+                            <tr><td>Utilities</td><td>$500</td><td>2%</td></tr>
+                            <tr><td>Insurance</td><td>$800</td><td>4%</td></tr>
+                            <tr><td>Marketing</td><td>$3,000</td><td>14%</td></tr>
+                            <tr><td>Salaries</td><td>$8,500</td><td>40%</td></tr>
+                            <tr><td><strong>Total Operating</strong></td><td style="font-weight: 700;">$15,800</td><td>75%</td></tr>
+                            <tr><td><strong>Net Income</strong></td><td style="font-weight: 700; color: var(--mint);">$5,380</td><td>26%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div><div><div class="card-title">Cash Flow Projection (12 Months)</div><div class="card-subtitle">Monthly cash position</div></div></div>
+                <div class="grid grid-4">
+                    <div class="stat-card blue"><div class="stat-value">$425K</div><div class="stat-label">Year-End Cash</div></div>
+                    <div class="stat-card mint"><div class="stat-value">$2.85M</div><div class="stat-label">Total Inflows</div></div>
+                    <div class="stat-card orange"><div class="stat-value">$2.42M</div><div class="stat-label">Total Outflows</div></div>
+                    <div class="stat-card purple"><div class="stat-value">6 mo</div><div class="stat-label">Runway</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 9: Financial Documents</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">10</span><h2>APPENDIX & SUPPORTING MATERIALS</h2><p>Supporting Evidence and Documentation</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div><div><div class="card-title">Required Supporting Documents</div><div class="card-subtitle">Documentation checklist</div></div></div>
+                <div class="grid grid-2">
+                    <ul class="checklist">
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Legal Formation Documents</div></li>
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Financial Statements (3 years)</div></li>
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Tax Returns</div></li>
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Market Research Data</div></li>
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Customer Testimonials</div></li>
+                    </ul>
+                    <ul class="checklist">
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Product Images</div></li>
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Team Resumes</div></li>
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Letters of Intent</div></li>
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Patents/Trademarks</div></li>
+                        <li><div class="checkbox"></div><div class="card-title" style="font-size: 10px;">Lease Agreements</div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 12px;">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="card-title">Risk Analysis</div><div class="card-subtitle">Key risks and mitigation</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Risk</th><th>Probability</th><th>Impact</th><th>Mitigation Strategy</th></tr></thead>
+                        <tbody>
+                            <tr><td>Market acceptance</td><td><span class="badge blue">Medium</span></td><td><span class="badge orange">High</span></td><td>Beta program, pilots</td></tr>
+                            <tr><td>Competitive pressure</td><td><span class="badge orange">High</span></td><td><span class="badge blue">Medium</span></td><td>Differentiate on service</td></tr>
+                            <tr><td>Regulatory changes</td><td><span class="badge blue">Low</span></td><td><span class="badge orange">High</span></td><td>Legal monitoring</td></tr>
+                            <tr><td>Key personnel loss</td><td><span class="badge blue">Medium</span></td><td><span class="badge blue">Medium</span></td><td>Succession planning</td></tr>
+                            <tr><td>Cash flow constraints</td><td><span class="badge blue">Medium</span></td><td><span class="badge orange">High</span></td><td>6-month runway</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="callout" style="margin-top: 12px;">
+                <div class="callout-header"><div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span class="callout-title">Remember</span></div>
+                <p class="callout-content">A business plan is a living document. Review and update it quarterly as your business evolves and market conditions change.</p>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Plan Builder Pro | Professional Edition | Section 10: Appendix</p></div>
+    </div>
+    
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">✓</span><h2>FINAL CHECKLIST</h2><p>Review Before Submission</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><div><div class="card-title">Business Plan Completion</div><div class="card-subtitle">All sections review status</div></div></div>
+                <div class="grid grid-2">
+                    <div>
+                        <div class="metric-row"><span class="metric-name">Executive Summary</span><span class="badge mint">Complete</span></div>
+                        <div class="metric-row"><span class="metric-name">Company Description</span><span class="badge mint">Complete</span></div>
+                        <div class="metric-row"><span class="metric-name">Market Analysis</span><span class="badge mint">Complete</span></div>
+                        <div class="metric-row"><span class="metric-name">Competitive Landscape</span><span class="badge mint">Complete</span></div>
+                        <div class="metric-row"><span class="metric-name">Organization & Management</span><span class="badge mint">Complete</span></div>
+                    </div>
+                    <div>
+                        <div class="metric-row"><span class="metric-name">Products/Services</span><span class="badge mint">Complete</span></div>
+                        <div class="metric-row"><span class="metric-name">Marketing & Sales</span><span class="badge mint">Complete</span></div>
+                        <div class="metric-row"><span class="metric-name">Funding Request</span><span class="badge mint">Complete</span></div>
+                        <div class="metric-row"><span class="metric-name">Financial Documents</span><span class="badge mint">Complete</span></div>
+                        <div class="metric-row"><span class="metric-name">Appendix</span><span class="badge mint">Complete</span></div>
+                    </div>
+                </div>
+                <div class="progress-container" style="margin-top: 16px;">
+                    <div class="progress-header"><span class="progress-label">Plan Completion</span><span class="progress-value">100%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--mint);"></div></div>
+                </div>
+            </div>
+            <div class="info-box blue" style="margin-top: 16px; text-align: center; padding: 30px;">
+                <h3 style="font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Your Business Plan is Ready</h3>
+                <p style="font-size: 12px; color: var(--gray-600); margin-bottom: 20px;">This professional document is designed to help you secure funding, attract partners, and guide your business growth.</p>
+                <div class="grid grid-4" style="max-width: 450px; margin: 0 auto;">
+                    <div class="stat-card blue"><div class="stat-value">10</div><div class="stat-label">Sections</div></div>
+                    <div class="stat-card mint"><div class="stat-value">25+</div><div class="stat-label">Templates</div></div>
+                    <div class="stat-card orange"><div class="stat-value">50+</div><div class="stat-label">Tables</div></div>
+                    <div class="stat-card purple"><div class="stat-value">100%</div><div class="stat-label">Professional</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            <p class="footer-text" style="font-size: 9px; margin-bottom: 6px;">Business Plan Builder Pro | Professional Edition</p>
+            <p class="footer-text" style="font-size: 8px;">© 2025 Business Plan Builder Pro | Version 1.0</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Business Funding Document Prep Kit - Professional Edition</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10px; line-height: 1.6; color: #1e293b; background: #ffffff; }
+        :root { --navy: #1e3a5f; --navy-dark: #0f2744; --blue: #3b82f6; --blue-light: #dbeafe; --sky: #0ea5e9; --mint: #10b981; --mint-light: #d1fae5; --orange: #f97316; --orange-light: #ffedd5; --purple: #8b5cf6; --purple-light: #ede9fe; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-300: #cbd5e1; --gray-600: #475569; --gray-800: #1e293b; }
+        .page { width: 210mm; padding: 18mm 16mm; margin: 0 auto; background: #ffffff; position: relative; }
+        
+        /* Cover Page */
+        .cover { height: 277mm; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%); color: white; padding: 40px; margin: -18mm -16mm; position: relative; overflow: hidden; }
+        .cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .cover-content { position: relative; z-index: 1; }
+        .cover-icon { width: 90px; height: 90px; background: var(--blue); border-radius: 22px; display: flex; align-items: center; justify-content: center; margin: 0 auto 35px; }
+        .cover-icon svg { width: 50px; height: 50px; fill: white; }
+        .cover h1 { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+        .cover-subtitle { font-size: 18px; opacity: 0.9; margin-bottom: 50px; }
+        .cover-tagline { font-size: 13px; opacity: 0.7; margin-bottom: 60px; }
+        .cover-features { display: flex; gap: 25px; margin-top: 40px; }
+        .cover-feature { text-align: center; }
+        .cover-feature-icon { width: 55px; height: 55px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+        .cover-feature-icon svg { width: 26px; height: 26px; fill: white; }
+        .cover-feature span { font-size: 11px; opacity: 0.9; }
+        .cover-edition { position: absolute; bottom: 45px; left: 50%; transform: translateX(-50%); background: var(--blue); padding: 10px 28px; border-radius: 22px; font-size: 12px; font-weight: 700; }
+        
+        /* Section Headers */
+        .section { margin-bottom: 20px; break-inside: avoid; }
+        .section-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); color: white; padding: 18px 22px; border-radius: 12px; margin-bottom: 16px; position: relative; overflow: hidden; }
+        .section-header::after { content: ''; position: absolute; top: 0; right: 0; width: 140px; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1)); }
+        .section-number { font-size: 40px; font-weight: 800; opacity: 0.2; position: absolute; top: 5px; right: 18px; }
+        .section-header h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; position: relative; }
+        .section-header p { font-size: 11px; opacity: 0.8; position: relative; }
+        
+        /* Cards */
+        .card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+        .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 2px solid var(--gray-200); }
+        .card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .card-icon.blue { background: var(--blue-light); } .card-icon.mint { background: var(--mint-light); } .card-icon.orange { background: var(--orange-light); } .card-icon.purple { background: var(--purple-light); }
+        .card-icon svg { width: 20px; height: 20px; }
+        .card-icon.blue svg { fill: var(--blue); } .card-icon.mint svg { fill: var(--mint); } .card-icon.orange svg { fill: var(--orange); } .card-icon.purple svg { fill: var(--purple); }
+        .card-title { font-size: 14px; font-weight: 700; color: var(--navy); }
+        .card-subtitle { font-size: 10px; color: var(--gray-600); margin-top: 2px; }
+        
+        /* Tables */
+        .table-container { overflow-x: auto; margin: 14px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 9px; }
+        th { background: var(--navy); color: white; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        th:first-child { border-radius: 8px 0 0 0; } th:last-child { border-radius: 0 8px 0 0; }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--gray-200); background: white; }
+        tr:nth-child(even) td { background: var(--gray-50); }
+        .highlight-table th { background: var(--blue); }
+        .highlight-table th.mint { background: var(--mint); }
+        .highlight-table th.orange { background: var(--orange); }
+        .highlight-table th.purple { background: var(--purple); }
+        
+        /* Callout */
+        .callout { background: linear-gradient(135deg, var(--blue-light) 0%, #bfdbfe 100%); border-left: 4px solid var(--blue); border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 14px 0; }
+        .callout-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .callout-icon { width: 22px; height: 22px; background: var(--blue); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+        .callout-icon svg { width: 14px; height: 14px; fill: white; }
+        .callout-title { font-size: 12px; font-weight: 700; color: var(--navy); }
+        .callout-content { font-size: 10px; color: var(--gray-800); line-height: 1.6; }
+        
+        /* Info Box */
+        .info-box { background: white; border: 1px solid var(--gray-300); border-radius: 12px; padding: 14px; margin: 14px 0; }
+        .info-box.mint { border-color: var(--mint); background: #ecfdf5; }
+        .info-box.orange { border-color: var(--orange); background: #fff7ed; }
+        .info-box.blue { border-color: var(--blue); background: #eff6ff; }
+        
+        /* Stat Cards */
+        .stat-card { background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 14px; text-align: center; }
+        .stat-card.blue { border-top: 3px solid var(--blue); } .stat-card.mint { border-top: 3px solid var(--mint); } .stat-card.orange { border-top: 3px solid var(--orange); } .stat-card.purple { border-top: 3px solid var(--purple); }
+        .stat-value { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+        .stat-label { font-size: 9px; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        /* Badge */
+        .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 12px; font-size: 8px; font-weight: 600; }
+        .badge.blue { background: var(--blue-light); color: var(--navy); } .badge.mint { background: var(--mint-light); color: #065f46; } .badge.orange { background: var(--orange-light); color: #9a3412; } .badge.purple { background: var(--purple-light); color: #5b21b6; }
+        
+        /* Grid */
+        .grid { display: grid; gap: 14px; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+        
+        /* Two Column */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        
+        /* Metric Row */
+        .metric-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--gray-200); }
+        .metric-row:last-child { border-bottom: none; }
+        .metric-name { font-size: 10px; color: var(--gray-600); }
+        .metric-value { font-size: 12px; font-weight: 700; color: var(--navy); }
+        
+        /* Checklist */
+        .checklist { list-style: none; }
+        .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--gray-200); }
+        .checklist li:last-child { border-bottom: none; }
+        .checkbox { width: 18px; height: 18px; border: 2px solid var(--gray-300); border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+        .checklist-title { font-size: 11px; font-weight: 600; color: var(--gray-800); }
+        .checklist-desc { font-size: 9px; color: var(--gray-600); margin-top: 2px; }
+        
+        /* Compact List */
+        .compact-list { list-style: none; }
+        .compact-list li { padding: 6px 0; font-size: 10px; border-bottom: 1px dashed var(--gray-200); display: flex; align-items: center; gap: 8px; }
+        .compact-list li::before { content: ''; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; }
+        
+        /* Form */
+        .form-field { margin-bottom: 12px; }
+        .form-label { font-size: 10px; font-weight: 600; color: var(--gray-600); margin-bottom: 4px; display: block; }
+        .form-input { width: 100%; padding: 10px 12px; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 11px; background: white; }
+        
+        /* Footer */
+        .page-footer { margin-top: 35px; padding-top: 16px; border-top: 2px solid var(--gray-200); text-align: center; }
+        .footer-text { font-size: 9px; color: var(--gray-600); }
+        
+        /* Page Break */
+        .page-break { page-break-after: always; }
+        
+        /* Divider */
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gray-300), transparent); margin: 24px 0; }
+        
+        /* Content Text */
+        .content-text { font-size: 10px; line-height: 1.7; color: var(--gray-800); margin: 10px 0; }
+        .content-header { font-size: 12px; font-weight: 700; color: var(--navy); margin: 16px 0 10px 0; }
+        
+        /* Document Items */
+        .doc-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: white; border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 8px; }
+        .doc-number { width: 28px; height: 28px; background: var(--navy); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+        .doc-content { flex: 1; }
+        .doc-title { font-size: 11px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+        .doc-desc { font-size: 9px; color: var(--gray-600); }
+        
+        /* Folder Structure */
+        .folder-tree { font-family: monospace; font-size: 10px; line-height: 1.8; background: var(--gray-50); padding: 16px; border-radius: 8px; }
+        .folder-item { padding: 4px 0; }
+        .folder-name { font-weight: 600; color: var(--navy); }
+        
+        /* Checklist Item */
+        .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--gray-100); }
+        .check-icon { width: 18px; height: 18px; border: 2px solid var(--mint); border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+        .check-text { font-size: 10px; color: var(--gray-800); }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1: COVER -->
+    <div class="page">
+        <div class="cover">
+            <div class="cover-content">
+                <div class="cover-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
+                <h1>BUSINESS FUNDING DOCUMENT PREP KIT</h1>
+                <p class="cover-subtitle">Get Your Files Lender-Ready Before You Need Money</p>
+                <p class="cover-tagline">The Complete System for Organizing Your Business Documents for Funding Success</p>
+                <div class="cover-features">
+                    <div class="cover-feature"><div class="cover-feature-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span>8 Core Templates</span></div>
+                    <div class="cover-feature"><div class="cover-feature-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span>Organized System</span></div>
+                    <div class="cover-feature"><div class="cover-feature-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span>Professional Tools</span></div>
+                    <div class="cover-feature"><div class="cover-feature-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span>Lender Ready</span></div>
+                </div>
+                <div class="cover-edition">PROFESSIONAL EDITION</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE 2: INTRODUCTION -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">01</span><h2>INTRODUCTION</h2><p>Why This Kit Changes Everything</p></div>
+            <div class="callout">
+                <div class="callout-header"><div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span class="callout-title">The Problem</span></div>
+                <p class="callout-content">Most business owners wait until the last minute to gather documents for funding applications. This scramble leads to incomplete submissions, delayed approvals, and missed opportunities.</p>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><div><div class="card-title">The Solution</div><div class="card-subtitle">This comprehensive system helps you organize every document</div></div></div>
+                <p class="content-text">The Business Funding Document Prep Kit changes everything. This comprehensive system helps you organize every document lenders will ever need so when funding opportunities arise, you're ready to move fast and look professional.</p>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-2H3v2z"/></svg></div><div><div class="card-title">Why Choose Professional Edition?</div><div class="card-subtitle">Everything you need to present compellingly</div></div></div>
+                    <ul class="compact-list">
+                        <li>Editable templates for quick updates</li>
+                        <li>Fillable forms for easy digital completion</li>
+                        <li>Advanced worksheets with detailed guidance</li>
+                        <li>Email scripts for lender communication</li>
+                        <li>Financial ratio calculator included</li>
+                        <li>Cash flow projection template</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">What You Get</div><div class="card-subtitle">Complete package contents</div></div></div>
+                    <ul class="compact-list">
+                        <li>Funding Document Checklist (Enhanced)</li>
+                        <li>Bank Statement Prep Sheet (Advanced)</li>
+                        <li>Business Summary Template (Extended)</li>
+                        <li>Use of Funds Worksheet (Comprehensive)</li>
+                        <li>Revenue Snapshot Sheet (Detailed)</li>
+                        <li>Debt Overview Worksheet (Complete)</li>
+                        <li>Folder Organization Guide</li>
+                        <li>Application Readiness Checklist</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Introduction</p></div>
+    </div>
+    
+    <!-- PAGE 3-4: FUNDING DOCUMENT CHECKLIST -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">02</span><h2>FUNDING DOCUMENT CHECKLIST</h2><p>The 10 Most Requested Documents by Lenders</p></div>
+            <div class="callout">
+                <div class="callout-header"><div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span class="callout-title">Pro Tip</span></div>
+                <p class="callout-content">In order of frequency requested by lenders. Gather these documents first to accelerate your application process.</p>
+            </div>
+            <div class="grid grid-2">
+                <div class="doc-item"><div class="doc-number">1</div><div class="doc-content"><div class="doc-title">Business Tax Returns (2-3 years)</div><div class="doc-desc">Verifies your reported income with official government records</div></div></div>
+                <div class="doc-item"><div class="doc-number">2</div><div class="doc-content"><div class="doc-title">Personal Tax Returns (2-3 years)</div><div class="doc-desc">Shows your overall financial picture, required for personal guarantees</div></div></div>
+                <div class="doc-item"><div class="doc-number">3</div><div class="doc-content"><div class="doc-title">Profit & Loss Statement (12 months)</div><div class="doc-desc">Demonstrates income, expenses, and net profit trends</div></div></div>
+                <div class="doc-item"><div class="doc-number">4</div><div class="doc-content"><div class="doc-title">Balance Sheet (current)</div><div class="doc-desc">Displays your assets, liabilities, and equity at a point in time</div></div></div>
+                <div class="doc-item"><div class="doc-number">5</div><div class="doc-content"><div class="doc-title">Business Bank Statements (6-12 months)</div><div class="doc-desc">Shows cash flow patterns and account management</div></div></div>
+                <div class="doc-item"><div class="doc-number">6</div><div class="doc-content"><div class="doc-title">Debt Schedule (all current obligations)</div><div class="doc-desc">Lists every debt with balances, payments, and terms</div></div></div>
+                <div class="doc-item"><div class="doc-number">7</div><div class="doc-content"><div class="doc-title">Accounts Receivable Aging</div><div class="doc-desc">Shows money owed to you by customers with payment status</div></div></div>
+                <div class="doc-item"><div class="doc-number">8</div><div class="doc-content"><div class="doc-title">Accounts Payable Aging</div><div class="doc-desc">Shows money you owe to vendors and suppliers</div></div></div>
+                <div class="doc-item"><div class="doc-number">9</div><div class="doc-content"><div class="doc-title">Business Plan with Use of Funds</div><div class="doc-desc">Demonstrates strategy and explains exactly how you'll use financing</div></div></div>
+                <div class="doc-item"><div class="doc-number">10</div><div class="doc-content"><div class="doc-title">Personal Financial Statement</div><div class="doc-desc">Summarizes personal assets and liabilities for guarantee requirements</div></div></div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Complete Document Categories</div><div class="card-subtitle">All documents organized by category</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Category</th><th>Documents</th><th>Time Period</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Business Identity</strong></td><td>Articles of Incorporation, License, EIN Letter, DBA, Operating Agreement</td><td>Current</td></tr>
+                            <tr><td><strong>Financial Statements</strong></td><td>P&L, Balance Sheet, Cash Flow, AR/AP Aging, Trial Balance</td><td>12 months</td></tr>
+                            <tr><td><strong>Bank Documentation</strong></td><td>Checking, Savings, Merchant Services Statements</td><td>12 months</td></tr>
+                            <tr><td><strong>Debt Documentation</strong></td><td>Loans, Credit Cards, Lines of Credit, Leases</td><td>Current</td></tr>
+                            <tr><td><strong>Revenue Verification</strong></td><td>Sales Records, Contracts, POS Reports, Payment Processor</td><td>12 months</td></tr>
+                            <tr><td><strong>Collateral Docs</strong></td><td>Equipment Titles, Vehicle Registration, Real Estate Deeds</td><td>Current</td></tr>
+                            <tr><td><strong>Personal Financials</strong></td><td>Tax Returns, Bank Statements, Balance Sheet</td><td>2-3 years</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 2: Funding Document Checklist</p></div>
+    </div>
+    
+    <!-- PAGE 5-6: BANK STATEMENT PREP SHEET -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">03</span><h2>BANK STATEMENT PREP SHEET</h2><p>How to Organize and Present Your Business Bank Statements</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="card-title">What Lenders Are Actually Looking For</div><div class="card-subtitle">Five key evaluation factors</div></div></div>
+                <div class="grid grid-2">
+                    <div class="info-box blue">
+                        <strong style="font-size: 11px; color: var(--navy);">1. Average Daily Balance</strong>
+                        <p style="font-size: 9px; margin-top: 6px; color: var(--gray-600);">Higher average balances suggest financial stability. They want to see balances that would cover your proposed monthly loan payment multiple times over.</p>
+                    </div>
+                    <div class="info-box mint">
+                        <strong style="font-size: 11px; color: var(--navy);">2. Cash Flow Consistency</strong>
+                        <p style="font-size: 9px; margin-top: 6px; color: var(--gray-600);">Consistent, regular deposits from customers suggest reliable revenue. Predictable deposit patterns that match your business model.</p>
+                    </div>
+                    <div class="info-box orange">
+                        <strong style="font-size: 11px; color: var(--navy);">3. Expense Management</strong>
+                        <p style="font-size: 9px; margin-top: 6px; color: var(--gray-600);">Large, unusual withdrawals or consistent overspending can signal poor financial management. Categorize your major expenses.</p>
+                    </div>
+                    <div class="info-box purple">
+                        <strong style="font-size: 11px; color: var(--navy);">4. Balance Trends</strong>
+                        <p style="font-size: 9px; margin-top: 6px; color: var(--gray-600);">Growing balances suggest a healthy, profitable business. Calculate your month-over-month balance change to highlight growth.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">12-Month Statement Summary</div><div class="card-subtitle">Track key metrics for each month</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Month</th><th>Beginning Balance</th><th>Ending Balance</th><th>Total Deposits</th><th># of Deposits</th><th>Total Withdrawals</th></tr></thead>
+                        <tbody>
+                            <tr><td>Jan</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>Feb</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>Mar</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>Apr</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>May</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>Jun</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 3: Bank Statement Prep Sheet</p></div>
+    </div>
+    
+    <!-- PAGE 7-8: BANK STATEMENT PREP SHEET CONTINUED -->
+    <div class="page">
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">12-Month Statement Summary (Continued)</div><div class="card-subtitle">Complete the full year tracking</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Month</th><th>Beginning Balance</th><th>Ending Balance</th><th>Total Deposits</th><th># of Deposits</th><th>Total Withdrawals</th></tr></thead>
+                        <tbody>
+                            <tr><td>Jul</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>Aug</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>Sep</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>Oct</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>Nov</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                            <tr><td>Dec</td><td>$</td><td>$</td><td>$</td><td></td><td>$</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Average Balance Calculation</div><div class="card-subtitle">Formula: (Beginning + Ending) ÷ 2 for each month</div></div></div>
+                <div class="form-field"><label class="form-label">12-Month Average Balance Calculation:</label><input class="form-input" type="text" placeholder="Sum of all monthly averages ÷ 12 = _______"></div>
+                <div class="info-box mint">
+                    <strong style="font-size: 11px;">Example:</strong>
+                    <p style="font-size: 9px; margin-top: 4px;">If average monthly balance is $17,833 and proposed loan payment is $1,200/month, your balance covers the payment nearly 15 times. This demonstrates strong repayment capacity.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div><div><div class="card-title">Deposit Pattern Analysis</div><div class="card-subtitle">Document where your deposits come from</div></div></div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Deposit Source</th><th>Monthly Amount</th><th>% of Total</th><th>Pattern</th></tr></thead>
+                        <tbody>
+                            <tr><td>Customer A (recurring contract)</td><td>$</td><td>%</td><td>Monthly</td></tr>
+                            <tr><td>Customer B (invoices)</td><td>$</td><td>%</td><td>Bi-weekly</td></tr>
+                            <tr><td>E-commerce sales</td><td>$</td><td>%</td><td>Weekly</td></tr>
+                            <tr><td>Retail sales</td><td>$</td><td>%</td><td>Daily</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="callout">
+                <div class="callout-header"><div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span class="callout-title">Key Insight</span></div>
+                <p class="callout-content">If one customer represents more than 30% of your deposits, note this concentration risk. Lenders worry about over-reliance on single customers.</p>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 3: Bank Statement Prep Sheet (continued)</p></div>
+    </div>
+    
+    <!-- PAGE 9-10: BUSINESS SUMMARY TEMPLATE -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">04</span><h2>BUSINESS SUMMARY TEMPLATE</h2><p>A Professional One-Page Overview That Lenders Love</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Company Information</div><div class="card-subtitle">Basic business details</div></div></div>
+                <div class="grid grid-2">
+                    <div class="form-field"><label class="form-label">Legal Business Name:</label><input class="form-input" type="text"></div>
+                    <div class="form-field"><label class="form-label">DBA (if different):</label><input class="form-input" type="text"></div>
+                    <div class="form-field"><label class="form-label">Business Address:</label><input class="form-input" type="text"></div>
+                    <div class="form-field"><label class="form-label">Phone:</label><input class="form-input" type="text"></div>
+                    <div class="form-field"><label class="form-label">Email:</label><input class="form-input" type="text"></div>
+                    <div class="form-field"><label class="form-label">Years in Operation:</label><input class="form-input" type="text"></div>
+                </div>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div><div><div class="card-title">Business Description</div><div class="card-subtitle">What you do and who you serve</div></div></div>
+                    <div class="form-field"><label class="form-label">What does your business do?</label><input class="form-input" type="text" style="height: 50px;"></div>
+                    <div class="form-field"><label class="form-label">Who are your customers?</label><input class="form-input" type="text" style="height: 50px;"></div>
+                    <div class="form-field"><label class="form-label">What makes you different?</label><input class="form-input" type="text" style="height: 50px;"></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div><div class="card-title">Financial Performance</div><div class="card-subtitle">Key metrics for lenders</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Annual Revenue</span><span class="metric-value">$___________</span></div>
+                    <div class="metric-row"><span class="metric-name">Monthly Average Revenue</span><span class="metric-value">$___________</span></div>
+                    <div class="metric-row"><span class="metric-name">Gross Profit Margin</span><span class="metric-value">___%</span></div>
+                    <div class="metric-row"><span class="metric-name">Net Profit Margin</span><span class="metric-value">___%</span></div>
+                    <div class="metric-row"><span class="metric-name">Year-over-Year Growth</span><span class="metric-value">___%</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 4: Business Summary Template</p></div>
+    </div>
+    
+    <!-- PAGE 11-12: BUSINESS SUMMARY CONTINUED -->
+    <div class="page">
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><div class="card-title">Leadership & Customer Base</div><div class="card-subtitle">Team experience and customer metrics</div></div></div>
+                <div class="two-col">
+                    <div>
+                        <div class="form-field"><label class="form-label">Owner/CEO Name & Experience:</label><input class="form-input" type="text"></div>
+                        <div class="form-field"><label class="form-label">Operations Lead:</label><input class="form-input" type="text"></div>
+                        <div class="form-field"><label class="form-label">Finance Lead:</label><input class="form-input" type="text"></div>
+                        <div class="form-field"><label class="form-label">Sales Lead:</label><input class="form-input" type="text"></div>
+                        <div class="form-field"><label class="form-label">Combined Leadership Experience:</label><input class="form-input" type="text"></div>
+                    </div>
+                    <div>
+                        <div class="metric-row"><span class="metric-name">Total Active Customers</span><span class="metric-value">________</span></div>
+                        <div class="metric-row"><span class="metric-name">Average Customer Value</span><span class="metric-value">$________</span></div>
+                        <div class="metric-row"><span class="metric-name">Repeat Customer Rate</span><span class="metric-value">___%</span></div>
+                        <div class="metric-row"><span class="metric-name">Largest Customer (% of revenue)</span><span class="metric-value">___%</span></div>
+                        <div class="metric-row"><span class="metric-name">Top 5 Customers (% of revenue)</span><span class="metric-value">___%</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div><div class="card-title">Funding Request Summary</div><div class="card-subtitle">How much you need and what for</div></div></div>
+                <div class="grid grid-4">
+                    <div class="stat-card blue"><div class="stat-value">$_____</div><div class="stat-label">Amount Requested</div></div>
+                    <div class="stat-card mint"><div class="stat-value">_____</div><div class="stat-label">Requested Term</div></div>
+                    <div class="stat-card orange"><div class="stat-value">____%</div><div class="stat-label">Interest Rate</div></div>
+                    <div class="stat-card purple"><div class="stat-value">_____</div><div class="stat-label">Monthly Payment</div></div>
+                </div>
+                <div class="form-field" style="margin-top: 14px;"><label class="form-label">Purpose of Funding:</label><input class="form-input" type="text" style="height: 50px;"></div>
+                <div class="form-field"><label class="form-label">How this funding will help:</label><input class="form-input" type="text" style="height: 50px;"></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">Competitive Advantages</div><div class="card-subtitle">What makes you different from competitors</div></div></div>
+                <div class="metric-row"><span class="metric-name">Key Strength #1:</span><span class="metric-value">________________________________</span></div>
+                <div class="metric-row"><span class="metric-name">Key Strength #2:</span><span class="metric-value">________________________________</span></div>
+                <div class="metric-row"><span class="metric-name">Key Strength #3:</span><span class="metric-value">________________________________</span></div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 4: Business Summary Template (continued)</p></div>
+    </div>
+    
+    <!-- PAGE 13-14: USE OF FUNDS WORKSHEET -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">05</span><h2>USE OF FUNDS WORKSHEET</h2><p>Clearly Explain How You'll Use Your Funding</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div><div class="card-title">Funding Request Overview</div><div class="card-subtitle">Type and purpose of financing</div></div></div>
+                <div class="two-col">
+                    <div>
+                        <div class="form-field"><label class="form-label">Total Funding Amount Requested:</label><input class="form-input" type="text" placeholder="$____________"></div>
+                        <div class="form-field"><label class="form-label">Purpose Classification:</label><input class="form-input" type="text" placeholder="Growth/Expansion, Working Capital, Equipment, etc."></div>
+                        <div class="form-field"><label class="form-label">Requested Loan Term:</label><input class="form-input" type="text" placeholder="____ months"></div>
+                    </div>
+                    <div class="info-box blue">
+                        <strong style="font-size: 11px;">Type of Financing:</strong>
+                        <ul style="font-size: 9px; margin-top: 8px; padding-left: 16px;">
+                            <li>Term Loan</li>
+                            <li>Line of Credit</li>
+                            <li>SBA Loan</li>
+                            <li>Equipment Financing</li>
+                            <li>Commercial Mortgage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Detailed Use of Funds</div><div class="card-subtitle">Break down how you'll allocate the funding</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Category</th><th>Description</th><th>Amount</th><th>% of Total</th><th>Deployment Date</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Primary Use</strong></td><td></td><td>$</td><td>%</td><td></td></tr>
+                            <tr><td><strong>Secondary Use</strong></td><td></td><td>$</td><td>%</td><td></td></tr>
+                            <tr><td><strong>Tertiary Use</strong></td><td></td><td>$</td><td>%</td><td></td></tr>
+                            <tr><td><strong>Reserve</strong></td><td></td><td>$</td><td>%</td><td></td></tr>
+                            <tr style="background: var(--mint-light);"><td><strong>TOTAL</strong></td><td></td><td><strong>$</strong></td><td><strong>100%</strong></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 5: Use of Funds Worksheet</p></div>
+    </div>
+    
+    <!-- PAGE 15-16: USE OF FUNDS CONTINUED -->
+    <div class="page">
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">Expected Returns & Repayment Strategy</div><div class="card-subtitle">Document the financial impact of your use of funds</div></div></div>
+                <div class="two-col">
+                    <div>
+                        <div class="form-field"><label class="form-label">Use #1 Description:</label><input class="form-input" type="text"></div>
+                        <div class="metric-row"><span class="metric-name">Increased Revenue</span><span class="metric-value">$______/month</span></div>
+                        <div class="metric-row"><span class="metric-name">Cost Reduction</span><span class="metric-value">$______/month</span></div>
+                        <div class="metric-row"><span class="metric-name">New Customers</span><span class="metric-value">______</span></div>
+                        <div class="metric-row"><span class="metric-name">Efficiency Gain</span><span class="metric-value">___%</span></div>
+                        <div class="metric-row"><span class="metric-name">Return on Investment</span><span class="metric-value">___%</span></div>
+                        <div class="metric-row"><span class="metric-name">Break-even Timeline</span><span class="metric-value">___ months</span></div>
+                    </div>
+                    <div>
+                        <div class="form-field"><label class="form-label">Use #2 Description:</label><input class="form-input" type="text"></div>
+                        <div class="metric-row"><span class="metric-name">Increased Revenue</span><span class="metric-value">$______/month</span></div>
+                        <div class="metric-row"><span class="metric-name">Cost Reduction</span><span class="metric-value">$______/month</span></div>
+                        <div class="metric-row"><span class="metric-name">New Customers</span><span class="metric-value">______</span></div>
+                        <div class="metric-row"><span class="metric-name">Efficiency Gain</span><span class="metric-value">___%</span></div>
+                        <div class="metric-row"><span class="metric-name">Return on Investment</span><span class="metric-value">___%</span></div>
+                        <div class="metric-row"><span class="metric-name">Break-even Timeline</span><span class="metric-value">___ months</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div><div class="card-title">Repayment Strategy</div><div class="card-subtitle">How you'll repay the loan</div></div></div>
+                <div class="form-field"><label class="form-label">Primary Repayment Source:</label><input class="form-input" type="text"></div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+                        <tbody>
+                            <tr><td>Average Monthly Revenue</td><td>$____________</td></tr>
+                            <tr><td>Average Monthly Expenses</td><td>$____________</td></tr>
+                            <tr><td>Existing Debt Payments</td><td>$____________</td></tr>
+                            <tr><td>New Loan Payment</td><td>$____________</td></tr>
+                            <tr style="background: var(--mint-light);"><td><strong>Net Monthly Cash Flow</strong></td><td><strong>$____________</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-box mint" style="margin-top: 14px;">
+                    <strong style="font-size: 11px;">Debt Service Coverage Ratio:</strong>
+                    <p style="font-size: 9px; margin-top: 4px;">Net Operating Income ÷ Total Debt Service = _________</p>
+                    <p style="font-size: 9px; margin-top: 4px;"><strong>Target: 1.25 or higher</strong></p>
+                </div>
+            </div>
+            <div class="callout">
+                <div class="callout-header"><div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span class="callout-title">Worst-Case Scenario</span></div>
+                <p class="callout-content">If revenue drops by ____________%, could still make payments with: $ ____________</p>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 5: Use of Funds Worksheet (continued)</p></div>
+    </div>
+    
+    <!-- PAGE 17-18: REVENUE SNAPSHOT SHEET -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">06</span><h2>REVENUE SNAPSHOT SHEET</h2><p>Present Your Business Revenue Professionally</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">Annual Revenue Summary</div><div class="card-subtitle">3-year trend analysis</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Year</th><th>Total Revenue</th><th>vs. Prior Year</th><th>Key Events</th></tr></thead>
+                        <tbody>
+                            <tr><td>2023</td><td>$</td><td>+-%</td><td></td></tr>
+                            <tr><td>2024</td><td>$</td><td>+-%</td><td></td></tr>
+                            <tr><td>2025</td><td>$</td><td>+-%</td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="metric-row"><span class="metric-name">3-Year CAGR</span><span class="metric-value">___%</span></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Monthly Revenue Breakdown</div><div class="card-subtitle">Track revenue patterns throughout the year</div></div></div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Month</th><th>Revenue</th><th>vs. Prior Month</th><th>vs. Same Month Last Year</th></tr></thead>
+                        <tbody>
+                            <tr><td>Jan</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>Feb</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>Mar</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>Apr</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>May</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>Jun</td><td>$</td><td>%</td><td>%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 6: Revenue Snapshot Sheet</p></div>
+    </div>
+    
+    <!-- PAGE 19-20: REVENUE SNAPSHOT CONTINUED -->
+    <div class="page">
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Monthly Revenue Breakdown (Continued)</div><div class="card-subtitle">Complete the full year</div></div></div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Month</th><th>Revenue</th><th>vs. Prior Month</th><th>vs. Same Month Last Year</th></tr></thead>
+                        <tbody>
+                            <tr><td>Jul</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>Aug</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>Sep</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>Oct</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>Nov</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr><td>Dec</td><td>$</td><td>%</td><td>%</td></tr>
+                            <tr style="background: var(--blue-light);"><td><strong>TOTAL</strong></td><td><strong>$</strong></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-2H3v2z"/></svg></div><div><div class="card-title">Revenue by Product/Service</div><div class="card-subtitle">Break down your revenue streams</div></div></div>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Product/Service</th><th>Revenue</th><th>% of Total</th></tr></thead>
+                            <tbody>
+                                <tr><td></td><td>$</td><td>%</td></tr>
+                                <tr><td></td><td>$</td><td>%</td></tr>
+                                <tr><td></td><td>$</td><td>%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><div class="card-title">Customer Concentration</div><div class="card-subtitle">Revenue diversification analysis</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Largest Customer</span><span class="metric-value">$_____ (% of total)</span></div>
+                    <div class="metric-row"><span class="metric-name">2nd Largest</span><span class="metric-value">$_____ (% of total)</span></div>
+                    <div class="metric-row"><span class="metric-name">3rd Largest</span><span class="metric-value">$_____ (% of total)</span></div>
+                    <div class="metric-row"><span class="metric-name">Top 5 Total</span><span class="metric-value">$_____ (% of total)</span></div>
+                    <div class="metric-row"><span class="metric-name">Top 10 Total</span><span class="metric-value">$_____ (% of total)</span></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div><div><div class="card-title">Seasonality Analysis</div><div class="card-subtitle">Quarterly breakdown</div></div></div>
+                <div class="grid grid-4">
+                    <div class="stat-card blue"><div class="stat-value">Q1</div><div class="stat-label">$______</div></div>
+                    <div class="stat-card mint"><div class="stat-value">Q2</div><div class="stat-label">$______</div></div>
+                    <div class="stat-card orange"><div class="stat-value">Q3</div><div class="stat-label">$______</div></div>
+                    <div class="stat-card purple"><div class="stat-value">Q4</div><div class="stat-label">$______</div></div>
+                </div>
+                <div class="two-col" style="margin-top: 14px;">
+                    <div class="metric-row"><span class="metric-name">Highest Quarter:</span><span class="metric-value">Q___</span></div>
+                    <div class="metric-row"><span class="metric-name">Lowest Quarter:</span><span class="metric-value">Q___</span></div>
+                </div>
+                <div class="metric-row"><span class="metric-name">Seasonality Ratio:</span><span class="metric-value">____:1</span></div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 6: Revenue Snapshot Sheet (continued)</p></div>
+    </div>
+    
+    <!-- PAGE 21-22: DEBT OVERVIEW WORKSHEET -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">07</span><h2>DEBT OVERVIEW WORKSHEET</h2><p>Document Every Dollar You Owe</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div><div class="card-title">Complete Debt Inventory</div><div class="card-subtitle">All secured and unsecured debt</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Debt Name</th><th>Lender</th><th>Current Balance</th><th>Monthly Payment</th><th>Interest Rate</th><th>Maturity</th></tr></thead>
+                        <tbody>
+                            <tr><td></td><td></td><td>$</td><td>$</td><td>%</td><td></td></tr>
+                            <tr><td></td><td></td><td>$</td><td>$</td><td>%</td><td></td></tr>
+                            <tr><td></td><td></td><td>$</td><td>$</td><td>%</td><td></td></tr>
+                            <tr><td></td><td></td><td>$</td><td>$</td><td>%</td><td></td></tr>
+                            <tr><td></td><td></td><td>$</td><td>$</td><td>%</td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Debt Summary</div><div class="card-subtitle">Total debt obligations</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Secured Loans Total</span><span class="metric-value">$___________</span></div>
+                    <div class="metric-row"><span class="metric-name">Unsecured Loans Total</span><span class="metric-value">$___________</span></div>
+                    <div class="metric-row"><span class="metric-name">Credit Cards Total</span><span class="metric-value">$___________</span></div>
+                    <div class="metric-row"><span class="metric-name">Lines of Credit Total</span><span class="metric-value">$___________</span></div>
+                    <div class="metric-row"><span class="metric-name">Leases Total</span><span class="metric-value">$___________</span></div>
+                    <div class="metric-row" style="background: var(--blue-light);"><span class="metric-name" style="font-weight: 700;">TOTAL DEBT</span><span class="metric-value" style="font-weight: 700;">$___________</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="card-title">Debt Service Analysis</div><div class="card-subtitle">Monthly debt obligations</div></div></div>
+                    <div class="metric-row"><span class="metric-name">Monthly Revenue</span><span class="metric-value">$___________</span></div>
+                    <div class="metric-row"><span class="metric-name">Total Monthly Debt Service</span><span class="metric-value">$___________</span></div>
+                    <div class="metric-row"><span class="metric-name">Debt Service Ratio</span><span class="metric-value">___%</span></div>
+                    <div class="info-box mint">
+                        <p style="font-size: 9px;"><strong>Target:</strong> Below 50% for most lenders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 7: Debt Overview Worksheet</p></div>
+    </div>
+    
+    <!-- PAGE 23-24: FOLDER ORGANIZATION GUIDE -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">08</span><h2>FOLDER ORGANIZATION GUIDE</h2><p>Set Up a System That Makes You Look Professional</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></div><div><div class="card-title">The Master Folder Structure</div><div class="card-subtitle">Create this folder structure on your computer and in physical filing</div></div></div>
+                <div class="folder-tree">
+                    <div class="folder-item"><span class="folder-name">Business Funding Documents/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">00_Reference_Materials/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">01_Business_Identity/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">02_Financial_Statements/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">03_Bank_Documents/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">04_Debt_Documentation/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">05_Revenue_Records/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">06_Collateral_Documentation/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">07_Personal_Financials/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">08_Business_Plan/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">09_Tax_Returns/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">10_Insurance/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">├── <span class="folder-name">11_Licenses_Permits/</span></div>
+                    <div class="folder-item" style="padding-left: 20px;">└── <span class="folder-name">12_Submission_Ready/</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">Folder Contents Guide</div><div class="card-subtitle">What to put in each folder</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Folder</th><th>Contents</th><th>Naming Convention</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>01_Business_Identity</strong></td><td>Articles of Incorporation, License, EIN, DBA, Operating Agreement</td><td>Business_Identity_[Type]_[Date]</td></tr>
+                            <tr><td><strong>02_Financial_Statements</strong></td><td>P&L Statements, Balance Sheets, Cash Flow, AR/AP Aging</td><td>Financials_[Type]_[Period]_[Date]</td></tr>
+                            <tr><td><strong>03_Bank_Documents</strong></td><td>Checking Statements (12 months), Savings, Merchant Services</td><td>[Bank]_Account_[Last4]_[YYYY_MM]</td></tr>
+                            <tr><td><strong>04_Debt_Documentation</strong></td><td>Loan Agreements, Credit Card Statements, Leases</td><td>Debt_[Type]_[Lender]_[Date]</td></tr>
+                            <tr><td><strong>05_Revenue_Records</strong></td><td>Sales Reports, Invoice Records, Customer Contracts</td><td>Revenue_[Type]_[Period]_[Date]</td></tr>
+                            <tr><td><strong>07_Personal_Financials</strong></td><td>Personal Tax Returns (2-3 years), Bank Statements, Balance Sheet</td><td>Personal_[Document_Type]_[Year]</td></tr>
+                            <tr><td><strong>08_Business_Plan</strong></td><td>Executive Summary, Full Plan, Use of Funds, Projections</td><td>Business_Plan_[Document]_[Version]</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="callout">
+                <div class="callout-header"><div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span class="callout-title">Maintenance Schedule</span></div>
+                <div class="grid grid-3" style="margin-top: 8px;">
+                    <div class="info-box blue">
+                        <strong style="font-size: 10px;">Weekly (5 min)</strong>
+                        <p style="font-size: 9px; margin-top: 4px;">File new documents in proper folders</p>
+                    </div>
+                    <div class="info-box mint">
+                        <strong style="font-size: 10px;">Monthly (15 min)</strong>
+                        <p style="font-size: 9px; margin-top: 4px;">Review and archive last month</p>
+                    </div>
+                    <div class="info-box orange">
+                        <strong style="font-size: 10px;">Quarterly (30 min)</strong>
+                        <p style="font-size: 9px; margin-top: 4px;">Update financials and refresh docs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 8: Folder Organization Guide</p></div>
+    </div>
+    
+    <!-- PAGE 25-26: APPLICATION READINESS CHECKLIST -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">09</span><h2>APPLICATION READINESS CHECKLIST</h2><p>The Final Step Before Submitting Any Funding Application</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div><div><div class="card-title">Part 1: Document Completeness</div><div class="card-subtitle">Verify all required documents are ready</div></div></div>
+                <div class="two-col">
+                    <div>
+                        <strong style="font-size: 11px; color: var(--navy); margin-bottom: 8px; display: block;">Business Identity</strong>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Articles of Incorporation (current, complete)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Business License (not expired)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">EIN Confirmation Letter</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Operating Agreement/Bylaws</div></div>
+                        <strong style="font-size: 11px; color: var(--navy); margin: 12px 0 8px 0; display: block;">Financial Statements</strong>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">P&L Statement (last 12 months)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Balance Sheet (current, within 90 days)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Cash Flow Statement (last 12 months)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">AR Aging Report (current)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">AP Aging Report (current)</div></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 11px; color: var(--navy); margin-bottom: 8px; display: block;">Bank Documents</strong>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Checking Statements (last 12 months)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Savings Statements (if applicable)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Merchant Services (last 3 months)</div></div>
+                        <strong style="font-size: 11px; color: var(--navy); margin: 12px 0 8px 0; display: block;">Tax Returns</strong>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Business Tax Returns (2-3 years)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Personal Tax Returns (2-3 years)</div></div>
+                        <strong style="font-size: 11px; color: var(--navy); margin: 12px 0 8px 0; display: block;">Debt Documentation</strong>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">All loan statements (current balances)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Credit card statements (last 3 months)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Lease agreements</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 9: Application Readiness Checklist</p></div>
+    </div>
+    
+    <!-- PAGE 27-28: APPLICATION READINESS CONTINUED -->
+    <div class="page">
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="card-title">Part 2: Consistency Verification</div><div class="card-subtitle">Ensure all numbers match across documents</div></div></div>
+                <div class="two-col">
+                    <div>
+                        <strong style="font-size: 11px; color: var(--navy); margin-bottom: 8px; display: block;">Financial Figures</strong>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">P&L Revenue = Tax Return Revenue</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">P&L Revenue = Bank Deposits (within 5%)</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Balance Sheet Liabilities = Debt Schedule</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">All percentages add to 100%</div></div>
+                        <strong style="font-size: 11px; color: var(--navy); margin: 12px 0 8px 0; display: block;">Identity Consistency</strong>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Business name matches all documents</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">EIN matches all documents</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Addresses consistent across documents</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Ownership percentages consistent</div></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 11px; color: var(--navy); margin-bottom: 8px; display: block;">Dates and Periods</strong>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">All statements within required timeframes</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">No outdated documents included</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Dates are accurate and consistent</div></div>
+                        <strong style="font-size: 11px; color: var(--navy); margin: 12px 0 8px 0; display: block;">Quality Review</strong>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">No blank fields on applications</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">All required signatures present</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">No "TBD" or placeholder text</div></div>
+                        <div class="checklist-item"><div class="check-icon"></div><div class="check-text">Documents are properly organized</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div><div class="card-title">Part 3: Final Package Assembly</div><div class="card-subtitle">Complete checklist before submission</div></div></div>
+                <div class="grid grid-2">
+                    <div class="info-box blue">
+                        <strong style="font-size: 10px;">Document Package</strong>
+                        <div class="checklist-item" style="border: none; padding: 4px 0;"><div class="check-icon" style="border-color: var(--blue);"></div><div class="check-text" style="font-size: 9px;">Documents organized in correct order</div></div>
+                        <div class="checklist-item" style="border: none; padding: 4px 0;"><div class="check-icon" style="border-color: var(--blue);"></div><div class="check-text" style="font-size: 9px;">Each section has clear dividers</div></div>
+                        <div class="checklist-item" style="border: none; padding: 4px 0;"><div class="check-icon" style="border-color: var(--blue);"></div><div class="check-text" style="font-size: 9px;">Table of contents included</div></div>
+                        <div class="checklist-item" style="border: none; padding: 4px 0;"><div class="check-icon" style="border-color: var(--blue);"></div><div class="check-text" style="font-size: 9px;">Package is complete and ready</div></div>
+                    </div>
+                    <div class="info-box mint">
+                        <strong style="font-size: 10px;">Digital Backup</strong>
+                        <div class="checklist-item" style="border: none; padding: 4px 0;"><div class="check-icon" style="border-color: var(--mint);"></div><div class="check-text" style="font-size: 9px;">Complete digital copy created</div></div>
+                        <div class="checklist-item" style="border: none; padding: 4px 0;"><div class="check-icon" style="border-color: var(--mint);"></div><div class="check-text" style="font-size: 9px;">Stored in backup location</div></div>
+                        <div class="checklist-item" style="border: none; padding: 4px 0;"><div class="check-icon" style="border-color: var(--mint);"></div><div class="check-text" style="font-size: 9px;">Accessible when needed</div></div>
+                    </div>
+                </div>
+                <div class="info-box blue" style="margin-top: 14px; text-align: center;">
+                    <strong style="font-size: 12px;">Submission Confirmation</strong>
+                    <div class="grid grid-3" style="margin-top: 10px;">
+                        <div class="checklist-item" style="border: none; padding: 4px 0; justify-content: center;"><div class="check-icon" style="border-color: var(--navy);"></div><div class="check-text" style="font-size: 9px;">Delivery confirmed</div></div>
+                        <div class="checklist-item" style="border: none; padding: 4px 0; justify-content: center;"><div class="check-icon" style="border-color: var(--navy);"></div><div class="check-text" style="font-size: 9px;">Confirmation received</div></div>
+                        <div class="checklist-item" style="border: none; padding: 4px 0; justify-content: center;"><div class="check-icon" style="border-color: var(--navy);"></div><div class="check-text" style="font-size: 9px;">Follow-up scheduled</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 9: Application Readiness Checklist (continued)</p></div>
+    </div>
+    
+    <!-- PAGE 29-30: LENDER PREP WORKSHEETS -->
+    <div class="page">
+        <div class="section">
+            <div class="section-header"><span class="section-number">10</span><h2>LENDER PREP WORKSHEETS</h2><p>Detailed Guidance for Lender Conversations</p></div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div><div><div class="card-title">Financial Ratio Calculator</div><div class="card-subtitle">Calculate these key ratios to understand your position</div></div></div>
+                <div class="grid grid-2">
+                    <div class="info-box blue">
+                        <strong style="font-size: 11px;">Liquidity Ratios</strong>
+                        <p style="font-size: 9px; margin: 6px 0;"><strong>Current Ratio</strong> = Current Assets ÷ Current Liabilities</p>
+                        <p style="font-size: 9px; margin-bottom: 4px;">Current Assets: $____________</p>
+                        <p style="font-size: 9px; margin-bottom: 4px;">Current Liabilities: $____________</p>
+                        <p style="font-size: 9px;"><strong>Current Ratio:</strong> _______ (Target: Above 1.5)</p>
+                        <div class="divider"></div>
+                        <p style="font-size: 9px; margin: 6px 0;"><strong>Quick Ratio</strong> = (Current Assets - Inventory) ÷ Current Liabilities</p>
+                        <p style="font-size: 9px;"><strong>Quick Ratio:</strong> _______ (Target: Above 1.0)</p>
+                    </div>
+                    <div class="info-box mint">
+                        <strong style="font-size: 11px;">Profitability Ratios</strong>
+                        <p style="font-size: 9px; margin: 6px 0;"><strong>Profit Margin</strong> = Net Income ÷ Revenue × 100</p>
+                        <p style="font-size: 9px;"><strong>Profit Margin:</strong> _______% (Target: Industry-specific)</p>
+                        <div class="divider"></div>
+                        <strong style="font-size: 11px;">Leverage Ratios</strong>
+                        <p style="font-size: 9px; margin: 6px 0;"><strong>Debt-to-Equity</strong> = Total Liabilities ÷ Total Equity</p>
+                        <p style="font-size: 9px;"><strong>D/E Ratio:</strong> _______ (Target: Below 2.0)</p>
+                        <div class="divider"></div>
+                        <p style="font-size: 9px; margin: 6px 0;"><strong>DSCR</strong> = Net Operating Income ÷ Total Debt Service</p>
+                        <p style="font-size: 9px;"><strong>DSCR:</strong> _______ (Target: Above 1.25)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><div class="card-title">Lender Meeting Preparation</div><div class="card-subtitle">Materials to prepare before any meeting</div></div></div>
+                <div class="two-col">
+                    <div>
+                        <strong style="font-size: 10px; color: var(--navy);">One-Pager Summary (print one per meeting)</strong>
+                        <ul class="compact-list" style="margin-top: 8px;">
+                            <li>Company name, logo, contact info</li>
+                            <li>3-sentence business description</li>
+                            <li>Key financial highlights (3 numbers)</li>
+                            <li>Funding request amount and purpose</li>
+                            <li>What makes you a good borrower</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong style="font-size: 10px; color: var(--navy);">Financial Snapshot</strong>
+                        <ul class="compact-list" style="margin-top: 8px;">
+                            <li>Revenue trend (3 years)</li>
+                            <li>Profit margin</li>
+                            <li>Debt service coverage</li>
+                            <li>Key strengths</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Section 10: Lender Prep Worksheets</p></div>
+    </div>
+    
+    <!-- PAGE 31-32: EMAIL SCRIPTS -->
+    <div class="page">
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div><div class="card-title">Email Scripts for Lender Communication</div><div class="card-subtitle">Professional templates for following up</div></div></div>
+                <div class="info-box blue">
+                    <strong style="font-size: 11px;">Script 1: Initial Application Follow-Up</strong>
+                    <p style="font-size: 9px; margin-top: 6px;"><strong>Subject:</strong> Application Follow-Up - [Company Name]</p>
+                    <p style="font-size: 9px; margin-top: 6px;">Dear [Lender Name],</p>
+                    <p style="font-size: 9px; margin-top: 4px;">I wanted to follow up on our recent application for [loan type] submitted on [date]. Since our submission, we've been preparing any additional documentation you might need to expedite the review process. Please let me know if there's anything else you require.</p>
+                    <p style="font-size: 9px; margin-top: 6px;">Best regards, [Your Name], [Title], [Phone]</p>
+                </div>
+                <div class="info-box mint" style="margin-top: 12px;">
+                    <strong style="font-size: 11px;">Script 2: Status Check-In (Week 1)</strong>
+                    <p style="font-size: 9px; margin-top: 6px;"><strong>Subject:</strong> Quick Check-In - [Company Name] Application</p>
+                    <p style="font-size: 9px; margin-top: 6px;">Dear [Lender Name],</p>
+                    <p style="font-size: 9px; margin-top: 4px;">I hope this message finds you well. I wanted to check in briefly on the status of our application submitted on [date]. We've been working to ensure all supporting documentation is current and readily available. Is there a good time for a brief call to discuss any questions?</p>
+                    <p style="font-size: 9px; margin-top: 6px;">Best regards, [Your Name], [Phone]</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-icon orange"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div><div class="card-title">More Email Templates</div><div class="card-subtitle">Additional follow-up scripts</div></div></div>
+                <div class="info-box blue">
+                    <strong style="font-size: 11px;">Script 3: Request for Feedback (After Denial)</strong>
+                    <p style="font-size: 9px; margin-top: 6px;"><strong>Subject:</strong> Request for Application Feedback - [Company Name]</p>
+                    <p style="font-size: 9px; margin-top: 6px;">Dear [Lender Name],</p>
+                    <p style="font-size: 9px; margin-top: 4px;">Thank you for reviewing our application. While I understand the decision was not in our favor this time, I would greatly appreciate any feedback you could provide. Understanding the specific factors that influenced the decision would help us strengthen our application for future opportunities.</p>
+                    <p style="font-size: 9px; margin-top: 6px;">Best regards, [Your Name], [Title], [Phone]</p>
+                </div>
+                <div class="info-box mint" style="margin-top: 12px;">
+                    <strong style="font-size: 11px;">Script 4: Building Long-Term Relationships</strong>
+                    <p style="font-size: 9px; margin-top: 6px;"><strong>Subject:</strong> Staying Connected - [Company Name]</p>
+                    <p style="font-size: 9px; margin-top: 6px;">Dear [Lender Name],</p>
+                    <p style="font-size: 9px; margin-top: 4px;">Thank you for the opportunity to apply for funding. Even though our timelines may not align right now, I'd like to stay connected. As our business continues to grow, we'll be revisiting our funding needs periodically. When the time is right, we'd love to work with [Lender] again.</p>
+                    <p style="font-size: 9px; margin-top: 6px;">Best regards, [Your Name], [Phone]</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Email Scripts</p></div>
+    </div>
+    
+    <!-- PAGE 33-34: CASH FLOW PROJECTION -->
+    <div class="page">
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><div><div class="card-title">12-Month Cash Flow Projection</div><div class="card-subtitle">Demonstrate your ability to repay the loan</div></div></div>
+                <div class="table-container">
+                    <table class="highlight-table">
+                        <thead><tr><th>Category</th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 4</th><th>Month 5</th><th>Month 6</th></tr></thead>
+                        <tbody>
+                            <tr style="background: var(--blue-light);"><td><strong>Revenue</strong></td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td></tr>
+                            <tr><td>Product/Service A</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td></tr>
+                            <tr><td>Product/Service B</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td></tr>
+                            <tr style="background: var(--gray-100);"><td><strong>Total Revenue</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td></tr>
+                            <tr style="background: var(--orange-light);"><td><strong>Expenses</strong></td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td></tr>
+                            <tr><td>Cost of Goods Sold</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td></tr>
+                            <tr><td>Salaries/Wages</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td></tr>
+                            <tr><td>Operating Expenses</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td></tr>
+                            <tr style="background: var(--gray-100);"><td><strong>Total Expenses</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td></tr>
+                            <tr style="background: var(--mint-light);"><td><strong>Net Cash Flow</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td></tr>
+                            <tr><td>Existing Debt Payments</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td></tr>
+                            <tr style="background: var(--blue-light);"><td><strong>Cash After Debt Service</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td></tr>
+                            <tr><td>New Loan Payment</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td><td>$</td></tr>
+                            <tr style="background: var(--purple-light);"><td><strong>Net After Loan Payment</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td><td><strong>$</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="callout">
+                <div class="callout-header"><div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span class="callout-title">Important Note</span></div>
+                <p class="callout-content">Be realistic. Projections that seem too optimistic raise concerns. Use conservative assumptions and document your reasoning. Lenders want to see that you can repay your loan even if things don't go exactly as planned.</p>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Cash Flow Projection</p></div>
+    </div>
+    
+    <!-- PAGE 35-36: NEXT STEPS -->
+    <div class="page">
+        <div class="section">
+            <div class="card">
+                <div class="card-header"><div class="card-icon mint"><svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-2H3v2z"/></svg></div><div><div class="card-title">Next Steps & Action Items</div><div class="card-subtitle">Your path to funding success</div></div></div>
+                <div class="grid grid-3">
+                    <div class="info-box blue">
+                        <strong style="font-size: 11px;">1. Immediate Actions</strong>
+                        <ul style="font-size: 9px; margin-top: 8px; padding-left: 16px;">
+                            <li>Review all templates</li>
+                            <li>Gather current documents</li>
+                            <li>Update business summary</li>
+                            <li>Complete use of funds</li>
+                            <li>Calculate financial ratios</li>
+                        </ul>
+                    </div>
+                    <div class="info-box mint">
+                        <strong style="font-size: 11px;">2. This Week's Goals</strong>
+                        <ul style="font-size: 9px; margin-top: 8px; padding-left: 16px;">
+                            <li>Set up folder system</li>
+                            <li>Place documents properly</li>
+                            <li>Complete bank statement summary</li>
+                            <li>Draft business summary</li>
+                            <li>List all debts with balances</li>
+                        </ul>
+                    </div>
+                    <div class="info-box orange">
+                        <strong style="font-size: 11px;">3. This Month's Goals</strong>
+                        <ul style="font-size: 9px; margin-top: 8px; padding-left: 16px;">
+                            <li>Complete all templates</li>
+                            <li>Calculate 12-month projection</li>
+                            <li>Identify 3-5 lenders</li>
+                            <li>Research requirements</li>
+                            <li>Prepare packages</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 14px;">
+                <div class="card-header"><div class="card-icon purple"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><div><div class="card-title">When Funding Opportunities Arise</div><div class="card-subtitle">Follow this checklist every time</div></div></div>
+                <div class="grid grid-3">
+                    <div class="stat-card blue"><div class="stat-value">1</div><div class="stat-label">Pull Readiness Checklist</div></div>
+                    <div class="stat-card mint"><div class="stat-value">2</div><div class="stat-label">Update Documents</div></div>
+                    <div class="stat-card orange"><div class="stat-value">3</div><div class="stat-label">Verify Consistency</div></div>
+                </div>
+                <div class="grid grid-3" style="margin-top: 12px;">
+                    <div class="stat-card purple"><div class="stat-value">4</div><div class="stat-label">Assemble Package</div></div>
+                    <div class="stat-card blue"><div class="stat-value">5</div><div class="stat-label">Submit with Confidence</div></div>
+                    <div class="stat-card mint"><div class="stat-value">6</div><div class="stat-label">Follow Up Professionally</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><p class="footer-text">Business Funding Document Prep Kit | Professional Edition | Next Steps</p></div>
+    </div>
+    
+    <!-- PAGE 37: FINAL PAGE -->
+    <div class="page">
+        <div class="section">
+            <div class="card" style="background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); color: white; text-align: center; padding: 30px;">
+                <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">Your Documents Are Now Lender-Ready</h2>
+                <p style="font-size: 12px; opacity: 0.9; margin-bottom: 24px;">This comprehensive kit gives you everything you need to organize your business documents and present them professionally to lenders.</p>
+                <div class="grid grid-4" style="max-width: 400px; margin: 0 auto;">
+                    <div class="stat-card blue"><div class="stat-value">8</div><div class="stat-label">Core Templates</div></div>
+                    <div class="stat-card mint"><div class="stat-value">14</div><div class="stat-label">Document Sections</div></div>
+                    <div class="stat-card orange"><div class="stat-value">37</div><div class="stat-label">Total Pages</div></div>
+                    <div class="stat-card purple"><div class="stat-value">100%</div><div class="stat-label">Professional</div></div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 16px;">
+                <div class="card-header"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div><div class="card-title">Professional Edition Includes</div><div class="card-subtitle">Everything you need for funding success</div></div></div>
+                <div class="two-col">
+                    <ul class="compact-list">
+                        <li>Editable Word versions of all templates</li>
+                        <li>Fillable PDF forms</li>
+                        <li>Advanced lender prep worksheets</li>
+                        <li>Email scripts for lender communication</li>
+                        <li>Financial ratio calculator</li>
+                    </ul>
+                    <ul class="compact-list">
+                        <li>Cash flow projection template</li>
+                        <li>Lender communication templates</li>
+                        <li>Priority support access</li>
+                        <li>Lifetime updates included</li>
+                        <li>$127 one-time payment</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="callout" style="margin-top: 14px;">
+                <div class="callout-header"><div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div><span class="callout-title">Remember</span></div>
+                <p class="callout-content">A business plan is a living document. Review and update it quarterly as your business evolves and market conditions change. Set calendar reminders for regular plan reviews and adjust projections based on actual performance.</p>
+            </div>
+        </div>
+        <div class="page-footer">
+            <p class="footer-text" style="font-size: 9px; margin-bottom: 6px;">Business Funding Document Prep Kit | Professional Edition</p>
+            <p class="footer-text" style="font-size: 8px;">© 2026 Business Funding Document Prep Kit | Version 1.0</p>
+        </div>
+    </div>
+</body>
+</html>
